@@ -1,0 +1,11 @@
+box: wercker-labs/docker
+build:
+  steps:
+    - script:
+        name: docker build
+        code: docker build -t shogito/centos6 .
+    - script:
+        name: run system test
+        code: |
+            sudo docker run -v `pwd`:/ansible shogito/centos6 ansible-playbook /ansible/tests/test.yml -i /ansible/tests/inventory -c local --sudo
+
