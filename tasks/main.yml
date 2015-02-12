@@ -1,5 +1,6 @@
 - include: prereq-RedHat.yml
   when: ansible_os_family == 'RedHat'
+  tag: pyenv
 
 - include: prereq-Debian.yml
   when: ansible_os_family == 'Debian'
@@ -27,11 +28,15 @@
 - name: python install
   shell: "echo y | '{{ PYENV_USER_HOME }}'/.pyenv/bin/pyenv install {{ PYTHON_VERSION }}"
   sudo_user: "{{ PYENV_USER }}"
+  changed_when: false 
+  always_run: yes
   
 - name: python global 
   shell: "'{{ PYENV_USER_HOME }}'/.pyenv/bin/pyenv global {{ PYTHON_VERSION }}"
   sudo_user: "{{ PYENV_USER }}"
+  changed_when: false 
+  always_run: yes
 
-- name: clone pyenv
+- name: clone pyenv-virtualenv
   git: repo=git://github.com/yyuu/pyenv-virtualenv.git dest={{ PYENV_USER_HOME }}/.pyenv/plugins/pyenv-virtualenva accept_hostkey=yes
   sudo_user: "{{ PYENV_USER }}"
