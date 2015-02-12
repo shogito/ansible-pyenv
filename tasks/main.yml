@@ -32,7 +32,7 @@
 - name: .zshenv_permission設定
   file: path={{ PYENV_USER_HOME }}/.zshenv state=file owner={{PYENV_USER}}  mode=0755
   sudo_user: "{{ PYENV_USER }}"
-  when: is_file.stat.md5 ist defined
+  when: is_file.stat.md5 is defined
 
 - name: .zshenvでprofile.d/pyenv.shを読み込むように変更
   lineinfile: line='source {{ PYENV_USER_HOME }}/profile.d/pyenv.sh' dest={{ PYENV_USER_HOME }}/.zshenv insertafter=EOF
