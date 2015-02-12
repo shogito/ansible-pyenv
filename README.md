@@ -1,38 +1,38 @@
-Role Name
-=========
 
-A brief description of the role goes here.
+[![Build Status](https://travis-ci.org/shogito/ansible-pyenv.svg?branch=master)](https://travis-ci.org/shogito/ansible-pyenv)
 
-Requirements
-------------
+# Ansible Role: ansible-pyenv
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+### 要求
+とくになし
 
-Role Variables
---------------
+### Role Variables
+pyenvをインストールするユーザ
+```
+ANSIBLE_PYENV_PYENV_USER
+```
+pyenvをインストールするロケーション
+```
+ANSIBLE_PYENV_PYTENV_USER_HOME
+```
+pyenvでインストールするPython Version
+```
+ANSIBLE_PYENV_PYTHON_VERSION
+```
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+### Example Playbook
+```
+- hosts: server
+  vars:
+    ANSIBLE_PYENV_PYENV_USER: root
+	ANSIBLE_PYENV_PYENV_USER_HOME: /root 
+	ANSIBLE_PYENV_PYTHON_VERSION: 2.7.9
+  roles:
+    - { role: shogito.ansible-pyenv }
+```
 
-Dependencies
-------------
+### License
+MIT / BSD
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+### Author Information
 
-Example Playbook
-----------------
-
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
-
-    - hosts: servers
-      roles:
-         - { role: username.rolename, x: 42 }
-
-License
--------
-
-BSD
-
-Author Information
-------------------
-
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
