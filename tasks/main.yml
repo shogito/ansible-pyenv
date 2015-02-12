@@ -17,12 +17,12 @@
   copy: src=../files/pyenv.sh dest={{ PYENV_USER_HOME }}/profile.d/ mode=0755
   sudo_user: "{{ PYENV_USER }}"
 
-- name: create {{ PYENV_USER_HOME }}/.zshenv
-  file: path={{ PYENV_USER_HOME }}/.zshenv state=touch owner={{PYENV_USER}}  mode=0755
-  sudo_user: "{{ PYENV_USER }}"
-
 - name: .zshenvでprofile.d/pyenv.shを読み込むように変更
   lineinfile: line='source {{ PYENV_USER_HOME }}/profile.d/pyenv.sh' dest={{ PYENV_USER_HOME }}/.zshenv insertafter=EOF
+  sudo_user: "{{ PYENV_USER }}"
+
+- name: create {{ PYENV_USER_HOME }}/.zshenv
+  file: path={{ PYENV_USER_HOME }}/.zshenv state=file owner={{PYENV_USER}}  mode=0755
   sudo_user: "{{ PYENV_USER }}"
 
 - name: python install
