@@ -1,24 +1,19 @@
-<<<<<<< HEAD
-
-=======
->>>>>>> 35b5041787afba55930c15c8cc9dc9625e940d07
 [![Build Status](https://travis-ci.org/shogito/ansible-pyenv.svg?branch=master)](https://travis-ci.org/shogito/ansible-pyenv)
-
 # Ansible Role: ansible-pyenv
 
-### $BMW5a(B
-$B$H$/$K$J$7(B
+### 要求
+none
 
 ### Role Variables
-pyenv$B$r%$%s%9%H!<%k$9$k%f!<%6(B
+pyenvをインストールするユーザ
 ```
 ANSIBLE_PYENV_PYENV_USER
 ```
-pyenv$B$r%$%s%9%H!<%k$9$k%m%1!<%7%g%s(B
+pyenvをインストールするロケーション
 ```
 ANSIBLE_PYENV_PYTENV_USER_HOME
 ```
-pyenv$B$G%$%s%9%H!<%k$9$k(BPython Version
+pyenvでインストールするPython Version
 ```
 ANSIBLE_PYENV_PYTHON_VERSION
 ```
@@ -28,8 +23,8 @@ ANSIBLE_PYENV_PYTHON_VERSION
 - hosts: server
   vars:
     ANSIBLE_PYENV_PYENV_USER: root
-	ANSIBLE_PYENV_PYENV_USER_HOME: /root 
-	ANSIBLE_PYENV_PYTHON_VERSION: 2.7.9
+    ANSIBLE_PYENV_PYENV_USER_HOME: /root 
+    ANSIBLE_PYENV_PYTHON_VERSION: 2.7.9
   roles:
     - { role: shogito.ansible-pyenv }
 ```
@@ -38,4 +33,3 @@ ANSIBLE_PYENV_PYTHON_VERSION
 MIT / BSD
 
 ### Author Information
-
