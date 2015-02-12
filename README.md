@@ -8,24 +8,24 @@
 ### Role Variables
 pyenvをインストールするユーザ
 ```
-PYENV_USER
+ANSIBLE_PYENV_PYENV_USER
 ```
 pyenvをインストールするロケーション
 ```
-PYTENV_USER_HOME
+ANSIBLE_PYENV_PYTENV_USER_HOME
 ```
 pyenvでインストールするPython Version
 ```
-PYTHON_VERSION
+ANSIBLE_PYENV_PYTHON_VERSION
 ```
 
 ### Example Playbook
 ```
 - hosts: server
   vars:
-    PYENV_USER: root
-	PYENV_USER_HOME: /root 
-	PYTHON_VERSION: 2.7.9
+    ANSIBLE_PYENV_PYENV_USER: root
+	ANSIBLE_PYENV_PYENV_USER_HOME: /root 
+	ANSIBLE_PYENV_PYTHON_VERSION: 2.7.9
   roles:
     - { role: shogito.ansible-pyenv }
 ```
