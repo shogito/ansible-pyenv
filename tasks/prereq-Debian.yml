@@ -1,0 +1,17 @@
+- name: apt キャッシュアップデート
+  apt: update_cache=yes
+
+- name: Install prereq パッケージ
+  apt: pkg= "{{ item }}" state=present
+  with_items:
+    - git
+    - curl
+
+- name: Install developmentパッケージ
+  apt: pkg="{{ item }}" state=present
+  with_items:
+    - libssl-dev
+    - libbz2-dev
+    - libsqlite3-dev
+    - libreadline-dev
+
