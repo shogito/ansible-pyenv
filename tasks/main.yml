@@ -17,9 +17,22 @@
   copy: src=../files/pyenv.sh dest={{ PYENV_USER_HOME }}/profile.d/ mode=0755
   sudo_user: "{{ PYENV_USER }}"
 
-- name: create {{ PYENV_USER_HOME }}/.zshenv
+- name: .zshenv存在チェック
+  stat: path={{ PYENV_USER_HOME }}/.zshenv
+  register: is_file
+  sudo_user: "{{ PYENV_USER }}"
+  changed_when: false 
+  always_run: yes
+
+- name: .zshenv作成
+  file: path={{ PYENV_USER_HOME }}/.zshenv state=touch owner={{PYENV_USER}}  mode=0755
+  sudo_user: "{{ PYENV_USER }}"
+  when: is_file.stat.md5 is not defined
+
+- name: .zshenv_permission設定
   file: path={{ PYENV_USER_HOME }}/.zshenv state=file owner={{PYENV_USER}}  mode=0755
   sudo_user: "{{ PYENV_USER }}"
+  when: is_file.stat.md5 is defined
 
 - name: .zshenvでprofile.d/pyenv.shを読み込むように変更
   lineinfile: line='source {{ PYENV_USER_HOME }}/profile.d/pyenv.sh' dest={{ PYENV_USER_HOME }}/.zshenv insertafter=EOF
