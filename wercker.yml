@@ -2,10 +2,11 @@ box: wercker-labs/docker
 build:
   steps:
     - script:
-        name: docker build
+        name: docker build -f Dockerfile_ubntu
         code: docker build -t shogito/centos6 .
     - script:
         name: run system test
         code: |
             sudo docker run -v `pwd`:/ansible-pyenv --workdir=/ansible-pyenv shogito/centos6 ansible-playbook /ansible-pyenv/tests/test.yml -i /ansible-pyenv/tests/inventory -c local --sudo
 
+   
