@@ -7,5 +7,5 @@ build:
     - script:
         name: run system test
         code: |
-            sudo docker run -v ..:/ansible-pyenv --workdir=/ansible-pyenv shogito/centos6 ansible-playbook /ansible/tests/test.yml -i /ansible/tests/inventory -c local --sudo
+            sudo docker run -v `pwd`:/ansible-pyenv --workdir=/ansible-pyenv shogito/centos6 ansible-playbook /ansible/tests/test.yml -i /ansible/tests/inventory -c local --sudo
 
