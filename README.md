@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 
+=======
+>>>>>>> 35b5041787afba55930c15c8cc9dc9625e940d07
 [![Build Status](https://travis-ci.org/shogito/ansible-pyenv.svg?branch=master)](https://travis-ci.org/shogito/ansible-pyenv)
 
 # Ansible Role: ansible-pyenv
