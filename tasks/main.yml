@@ -25,7 +25,7 @@
   always_run: yes
 
 - name: .zshenv作成
-  file: path={{ ANSIBLE_PYENV_PYENV_USER_HOME }}/.zshenv state=touch owner={{PYENV_USER}}  mode=0755
+  file: path={{ ANSIBLE_PYENV_PYENV_USER_HOME }}/.zshenv state=touch owner={{ ANSIBLE_PYENV_PYENV_USER }}  mode=0755
   sudo_user: "{{ ANSIBLE_PYENV_PYENV_USER }}"
   when: is_file.stat.md5 is not defined
 
