@@ -7,49 +7,49 @@
 
 - name: clone pyenv
   git: repo=git://github.com/yyuu/pyenv.git dest={{ ANSIBLE_PYENV_PYENV_USER_HOME }}/.pyenv accept_hostkey=yes
-  sudo_user: "{{ ANSIBLE_PYENV_PYTHON_USER }}"
+  sudo_user: "{{ ANSIBLE_PYENV_PYENV_USER }}"
 
 - name: create environ dir
   file: path={{ ANSIBLE_PYENV_PYENV_USER_HOME }}/profile.d state=directory mode=0755
-  sudo_user: "{{ ANSIBLE_PYENV_PYTHON_USER }}"
+  sudo_user: "{{ ANSIBLE_PYENV_PYENV_USER }}"
 
 - name: add environ scrip
   copy: src=../files/pyenv.sh dest={{ ANSIBLE_PYENV_PYENV_USER_HOME }}/profile.d/ mode=0755
-  sudo_user: "{{ ANSIBLE_PYENV_PYTHON_USER }}"
+  sudo_user: "{{ ANSIBLE_PYENV_PYENV_USER }}"
 
 - name: .zshenv存在チェック
   stat: path={{ ANSIBLE_PYENV_PYENV_USER_HOME }}/.zshenv
   register: is_file
-  sudo_user: "{{ ANSIBLE_PYENV_PYTHON_USER }}"
+  sudo_user: "{{ ANSIBLE_PYENV_PYENV_USER }}"
   changed_when: false 
   always_run: yes
 
 - name: .zshenv作成
   file: path={{ ANSIBLE_PYENV_PYENV_USER_HOME }}/.zshenv state=touch owner={{PYENV_USER}}  mode=0755
-  sudo_user: "{{ ANSIBLE_PYENV_PYTHON_USER }}"
+  sudo_user: "{{ ANSIBLE_PYENV_PYENV_USER }}"
   when: is_file.stat.md5 is not defined
 
 - name: .zshenv_permission設定
   file: path={{ ANSIBLE_PYENV_PYENV_USER_HOME }}/.zshenv state=file owner={{PYENV_USER}}  mode=0755
-  sudo_user: "{{ ANSIBLE_PYENV_PYTHON_USER }}"
+  sudo_user: "{{ ANSIBLE_PYENV_PYENV_USER }}"
   when: is_file.stat.md5 is defined
 
 - name: .zshenvでprofile.d/pyenv.shを読み込むように変更
-  lineinfile: line='source {{ ANSIBLE_PYENV_PYENV_USER_HOME }}/profile.d/pyenv.sh' dest={{ PYENV_USER_HOME }}/.zshenv insertafter=EOF
-  sudo_user: "{{ ANSIBLE_PYENV_PYTHON_USER }}"
+  lineinfile: line='source {{ ANSIBLE_PYENV_PYENV_USER_HOME }}/profile.d/pyenv.sh' dest={{ ANSIBLE_PYENV_PYENV_USER_HOME }}/.zshenv insertafter=EOF
+  sudo_user: "{{ ANSIBLE_PYENV_PYENV_USER }}"
 
 - name: python install
   shell: "echo y | '{{ ANSIBLE_PYENV_PYENV_USER_HOME }}'/.pyenv/bin/pyenv install {{ ANSIBLE_PYTHON_VERSION }}"
-  sudo_user: "{{ ANSIBLE_PYENV_PYTHON_USER }}"
+  sudo_user: "{{ ANSIBLE_PYENV_PYENV_USER }}"
   changed_when: false 
   always_run: yes
   
 - name: python global 
   shell: "'{{ ANSIBLE_PYENV_PYENV_USER_HOME }}'/.pyenv/bin/pyenv global {{ ANSIBLE_PYTHON_VERSION }}"
-  sudo_user: "{{ ANSIBLE_PYENV_PYTHON_USER }}"
+  sudo_user: "{{ ANSIBLE_PYENV_PYENV_USER }}"
   changed_when: false 
   always_run: yes
 
 - name: clone pyenv-virtualenv
   git: repo=git://github.com/yyuu/pyenv-virtualenv.git dest={{ ANSIBLE_PYENV_PYENV_USER_HOME }}/.pyenv/plugins/pyenv-virtualenva accept_hostkey=yes
-  sudo_user: "{{ ANSIBLE_PYENV_PYTHON_USER }}"
+  sudo_user: "{{ ANSIBLE_PYENV_PYENV_USER }}"
