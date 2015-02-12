@@ -1,0 +1,8 @@
+- hosts: localhost
+  vars:
+    PYENV_USER: root
+    PYENV_USER_HOME: root
+    PYTHON_VERSION
+  roles:
+    - ansible-pyenv 
+
