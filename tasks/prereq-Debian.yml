@@ -2,7 +2,7 @@
   apt: update_cache=yes
 
 - name: Install prereq パッケージ
-  apt: pkg= "{{ item }}" state=present
+  apt: pkg="{{ item }}" state=present
   with_items:
     - git
     - curl
