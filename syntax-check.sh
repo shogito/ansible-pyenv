@@ -1,2 +1,2 @@
 #!/bin/bash
-ansible-playbook -i inventory ./main.yml --syntax-check
+ansible-playbook -i tests/inventory tests/test.yml --syntax-check

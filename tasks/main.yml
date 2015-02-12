@@ -1,4 +1,3 @@
----
 - include: prereq-RedHat.yml
   when: ansible_os_family == 'RedHat'
 
