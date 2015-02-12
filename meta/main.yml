@@ -1,8 +1,8 @@
 ---
 galaxy_info:
-  author: your name
-  description: 
-  company: your company (optional)
+  author: shogito
+  description: install pyenv
+  company: nextone.inc
   # Some suggested licenses:
   # - BSD (default)
   # - MIT
