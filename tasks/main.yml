@@ -18,7 +18,7 @@
   sudo_user: "{{ PYENV_USER }}"
 
 - name: .zshenv存在チェック
-  state: path={{ PYENV_USER_HOME }}/.zshenv state=file
+  stat: path={{ PYENV_USER_HOME }}/.zshenv
   register: is_file
   sudo_user: "{{ PYENV_USER }}"
   changed_when: false 
