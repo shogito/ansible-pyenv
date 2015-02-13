@@ -1,5 +1,4 @@
-FROM centos:6
-MAINTAINER shogito
+FROM ubuntu
 
-RUN yum install -y epel-release
-RUN yum install -y openssh openssh-server ansible
+sudo apt-get install python-pip
+sudo pip install ansible

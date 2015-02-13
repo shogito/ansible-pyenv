@@ -2,7 +2,7 @@ box: wercker-labs/docker
 build:
   steps:
     - script:
-        name: docker build -f Dockerfile_ubntu
+        name: docker build
         code: docker build -t shogito/centos6 .
     - script:
         name: run system test
