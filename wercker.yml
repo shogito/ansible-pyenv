@@ -2,8 +2,13 @@ box: wercker-labs/docker
 build:
   steps:
     - script:
-        name: docker build
-        code: docker build -t shogito/centos6 .
+        name: cache image
+        code: if test ! -e "$WERCKER_CACHE_DIR/docker/image.tar"; then docker ps -a | awk 'NR>1 {print $2}' | xargs -I{} -P0 bash -c "export SAFE=\$(echo {} | sed -r 's|[/:]|_|g'); [ ! -f $WERCKER_CACHE_DIR/docker/images/\$SAFE.tar ] && docker save -o /tmp/image.tar {} && mv /tmp/\$SAFE.tar $WERCKER_CACHE_DIR/docker/images && echo \$SAFE saved" fi
+
+    - script:
+        name: restore
+        code: docker load -i $WERCKER_CACHE_DIR/docker/images/image.tar -t shogito/centos6
+
     - script:
         name: run system test
         code: |
