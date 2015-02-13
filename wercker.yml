@@ -21,4 +21,4 @@ build:
     - script:
         name: run idempotent test 
         code: |
-          cat /ansible-pyenv/ansible-idempotent-test.sh' | /usr/local/bin/docker-enter `docker ps -lq`
+          cat /ansible-pyenv/ansible-idempotent-test.sh | /usr/local/bin/docker-enter `docker ps -lq`
