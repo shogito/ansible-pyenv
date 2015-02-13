@@ -1,13 +1,28 @@
 box: wercker-labs/docker
 build:
   steps:
+    - script: 
+        name: install docker-enter
+        code: docker run --rm -v /usr/local/bin:/target jpetazzo/nsenter
+
     - script:
         name: build docker image
         code: docker build -t shogito/centos_ansible .
 
     - script:
+        name: run docker container
+        code: docker run -v `pwd`:/ansible-pyenv -i -d shogito/centos_ansible /bin/bash
+
+    - script:
         name: run system test
         code: |
-            sudo docker run -v `pwd`:/ansible-pyenv --workdir=/ansible-pyenv shogito/centos_ansible ansible-playbook /ansible-pyenv/tests/test.yml -i /ansible-pyenv/tests/inventory -c local --sudo
-
+          cat<<'EOF' | /usr/local/bin/docker-enter `docker ps -lq`
+          cd /ansible-pyenv ; ansible-playbook /ansible-pyenv/tests/test.yml -i /ansible-pyenv/tests/inventory -c local --sudo
+          EOF
    
+    - script:
+        name: run idempotent test 
+        code: |
+          cat<<'EOF' | /usr/local/bin/docker-enter `docker ps -lq`
+          cd /ansible-pyenv ; ansible-playbook /ansible-pyenv/tests/test.yml -i /ansible-pyenv/tests/inventory -c local --sudo | grep -q 'changed=0.*failed=0' && (echo 'Idempotence test: pass' && exit 0) || (echo 'Idempotence test: fail' && exit 1)
+          EOF
