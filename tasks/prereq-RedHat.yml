@@ -2,5 +2,4 @@
 - name: RedHat prereq
   yum:
     name: item.pkg
-    state: present
   with_items: packages
