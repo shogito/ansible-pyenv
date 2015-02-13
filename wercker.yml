@@ -16,13 +16,9 @@ build:
     - script:
         name: run system test
         code: |
-          cat<<'EOF' | /usr/local/bin/docker-enter `docker ps -lq`
-          cd /ansible-pyenv ; ansible-playbook /ansible-pyenv/tests/test.yml -i /ansible-pyenv/tests/inventory -c local --sudo
-          EOF
+          cat /ansible-pyenv/ansible-test.sh | /usr/local/bin/docker-enter `docker ps -lq`
    
     - script:
         name: run idempotent test 
         code: |
-          cat<<'EOF' | /usr/local/bin/docker-enter `docker ps -lq`
-          cd /ansible-pyenv ; ansible-playbook /ansible-pyenv/tests/test.yml -i /ansible-pyenv/tests/inventory -c local --sudo | grep -q 'changed=0.*failed=0' && (echo 'Idempotence test: pass' && exit 0) || (echo 'Idempotence test: fail' && exit 1)
-          EOF
+          cat /ansible-pyenv/ansible-idempotent-test.sh' | /usr/local/bin/docker-enter `docker ps -lq`
