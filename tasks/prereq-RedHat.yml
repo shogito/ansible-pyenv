@@ -1,5 +1,4 @@
 ---
 - name: RedHat prereq
-  yum:
-    name: item.pkg
+  yum: name={{ item.pkg }}
   with_items: packages
