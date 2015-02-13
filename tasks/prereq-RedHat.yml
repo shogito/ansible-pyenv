@@ -20,4 +20,4 @@
     - sqlite-devel
     - openssl-devel
     - python-devel
-
+    - tar
