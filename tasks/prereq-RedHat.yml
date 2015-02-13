@@ -1,5 +1,5 @@
 ---
 - name: RedHat prereq
   yum:
-    name: item.pkg
+    name: item.packages.pkg
   with_items: packages
