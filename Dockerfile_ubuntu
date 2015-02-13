@@ -1,4 +1,6 @@
 FROM ubuntu
 
-CMD sudo apt-get install python-pip
-CMD sudo pip install ansible
+CMD apt-get update
+
+CMD apt-get install python-pip -y
+CMD pip install ansible -y
