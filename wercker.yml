@@ -4,7 +4,7 @@ build:
     - script:
         name: cache image
         code: |
-            if [[ -e ${WERCKER_CACHE_DIR}/docker_ansible_image.tar ]]; then cat ${WERCKER_CACHE_DIR}/docker_ansible_image.tar | docker import - shogito/ubuntu ; docker load --input ${WERCKER_CACHE_DIR}/docker_ansible_image.tar ; else docker build . ; docker save -o ${WERCKER_CACHE_DIR}/docker_ansible_image.tar shogito/ubuntu ; fi
+            if [[ -e ${WERCKER_CACHE_DIR}/docker_ansible_image.tar ]]; then cat ${WERCKER_CACHE_DIR}/docker_ansible_image.tar | docker import - -t shogito/ubuntu ; docker load --input ${WERCKER_CACHE_DIR}/docker_ansible_image.tar ; else docker build . ; docker save -o ${WERCKER_CACHE_DIR}/docker_ansible_image.tar shogito/ubuntu ; fi
 
     - script:
         name: restore
