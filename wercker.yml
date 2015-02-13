@@ -8,6 +8,6 @@ build:
     - script:
         name: run system test
         code: |
-            sudo docker run -v `pwd`:/ansible-pyenv --workdir=/ansible-pyenv shogito/centos_ansible ansible-playbook /ansible-pyenv/tests/test.yml -i /ansible-pyenv/tests/inventory -c local --sudo \&\& ansible-playbook -i tests/inventory tests/$SITE --connection=local --sudo \| grep -q 'changed=0.*failed=0' \&\& (echo 'Idempotence test: pass' \&\& exit 0) \|\| (echo 'Idempotence test: fail' \&\& exit 1)
+            sudo docker run -v `pwd`:/ansible-pyenv --workdir=/ansible-pyenv shogito/centos_ansible ansible-playbook /ansible-pyenv/tests/test.yml -i /ansible-pyenv/tests/inventory -c local --sudo
 
    
