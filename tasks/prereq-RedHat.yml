@@ -1,24 +1,26 @@
 ---
 - name: RedHat prereq
+  vars: 
+    packages:
+    - pkg: tar
+    - pkg: gcc
+    - pkg: gcc-c++
+    - pkg: make
+    - pkg: git
+    - pkg: openssl-devel
+    - pkg: bzip2-devel
+    - pkg: zlib-devel
+    - pkg: readline-devel
+    - pkg: sqlite-devel
+    - pkg: zlib-devel
+    - pkg: bzip2
+    - pkg: bzip2-devel
+    - pkg: readline-devel
+    - pkg: sqlite
+    - pkg: sqlite-devel
+    - pkg: openssl-devel
+    - pkg: python-devel
   yum:
-    name: {{ item }}
+    name: {{ item.pkg }}
     state: present
-  with_items:
-    - tar
-    - gcc
-    - gcc-c++
-    - make
-    - git
-    - openssl-devel
-    - bzip2-devel
-    - zlib-devel
-    - readline-devel
-    - sqlite-devel
-    - zlib-devel
-    - bzip2
-    - bzip2-devel
-    - readline-devel
-    - sqlite
-    - sqlite-devel
-    - openssl-devel
-    - python-devel
+  with_items: packages
