@@ -2,3 +2,22 @@
 - name: RedHat prereq
   yum:
     name: gcc,gcc-c++,make,git,openssl-devel,bzip2-devel,zlib-devel,readline-devel,sqlite-devel,zlib-devel,bzip2,bzip2-devel,readline-devel,sqlite,sqlite-devel,openssl-devel
+  with_items:
+    - gcc
+    - gcc-c++
+    - make
+    - git
+    - openssl-devel
+    - bzip2-devel
+    - zlib-devel
+    - readline-devel
+    - sqlite-devel
+    - zlib-devel
+    - bzip2
+    - bzip2-devel
+    - readline-devel
+    - sqlite
+    - sqlite-devel
+    - openssl-devel
+    - python-devel
+

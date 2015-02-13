@@ -14,4 +14,5 @@
     - libbz2-dev
     - libsqlite3-dev
     - libreadline-dev
+    - python-dev
 
