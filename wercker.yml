@@ -23,21 +23,21 @@ build:
         code: |
           cat /ansible-pyenv/ansible-idempotent-test.sh | /usr/local/bin/docker-enter centos_ansible
 
-     - script:
-         name: build docker image ubuntu
-         code: cd .wercker/ubuntu; docker build -t shogito/ubuntu_ansible .
+    - script:
+        name: build docker image ubuntu
+        code: cd .wercker/ubuntu; docker build -t shogito/ubuntu_ansible .
+
+    - script:
+        name: run docker container
+        code: docker run -v `pwd`:/ansible-pyenv -i -d -name=ubuntu_ansible shogito/ubuntu_ansible /bin/bash
+
+    - script:
+        name: run system test
+        code: |
+          cat /ansible-pyenv/ansible-test.sh | /usr/local/bin/docker-enter ubuntu_ansible
  
-     - script:
-         name: run docker container
-         code: docker run -v `pwd`:/ansible-pyenv -i -d -name=ubuntu_ansible shogito/ubuntu_ansible /bin/bash
- 
-     - script:
-         name: run system test
-         code: |
-           cat /ansible-pyenv/ansible-test.sh | /usr/local/bin/docker-enter ubuntu_ansible
- 
-     - script:
-         name: run idempotent test
-         code: |
-           cat /ansible-pyenv/ansible-idempotent-test.sh | /usr/local/bin/docker-enter ubuntu_ansible
+    - script:
+        name: run idempotent test
+        code: |
+          cat /ansible-pyenv/ansible-idempotent-test.sh | /usr/local/bin/docker-enter ubuntu_ansible
 
