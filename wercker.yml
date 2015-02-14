@@ -7,11 +7,11 @@ build:
 
     - script:
         name: build docker image centos
-        code: cd .wercker/centos; docker build -t shogito/centos_ansible .
+        code: cd $WERCKER_ROOT/.wercker/centos; docker build -t shogito/centos_ansible .
 
     - script:
         name: run docker container
-        code: docker run -v `pwd`:/ansible-pyenv -i -d -name=centos_ansible shogito/centos_ansible /bin/bash
+        code: cd $WERCKER_ROOT; docker run -v `pwd`:/ansible-pyenv -i -d -name=centos_ansible shogito/centos_ansible /bin/bash
 
     - script:
         name: run system test
@@ -25,11 +25,11 @@ build:
 
     - script:
         name: build docker image ubuntu
-        code: cd .wercker/ubuntu; docker build -t shogito/ubuntu_ansible .
+        code: cd $WERCKER_ROOT/.wercker/ubuntu; docker build -t shogito/ubuntu_ansible .
 
     - script:
         name: run docker container
-        code: docker run -v `pwd`:/ansible-pyenv -i -d -name=ubuntu_ansible shogito/ubuntu_ansible /bin/bash
+        code: cd $WERCKER_ROOT; docker run -v `pwd`:/ansible-pyenv -i -d -name=ubuntu_ansible shogito/ubuntu_ansible /bin/bash
 
     - script:
         name: run system test
