@@ -5,7 +5,6 @@ build:
         name: install docker-enter
         code: docker run --rm -v /usr/local/bin:/target jpetazzo/nsenter
 
-    # centos検証
     - script:
         name: build docker image centos
         code: cd .wercker/centos; docker build -t shogito/centos_ansible .
@@ -24,8 +23,6 @@ build:
         code: |
           cat /ansible-pyenv/ansible-idempotent-test.sh | /usr/local/bin/docker-enter centos_ansible
 
-
-     # ubuntu検証
      - script:
          name: build docker image ubuntu
          code: cd .wercker/ubuntu; docker build -t shogito/ubuntu_ansible .
