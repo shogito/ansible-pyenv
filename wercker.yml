@@ -22,12 +22,12 @@ build:
     - script:
         name: run system test
         code: |
-          cat $WERCKER_ROOT/ansible-pyenv/ansible-test.sh | /usr/local/bin/docker-enter centos_ansible
+          cat $WERCKER_ROOT/ansible-pyenv/ansible-test.sh 2>&1 | /usr/local/bin/docker-enter centos_ansible
    
     - script:
         name: run idempotent test 
         code: |
-          cat $WERCKER_ROOT/ansible-pyenv/ansible-idempotent-test.sh | /usr/local/bin/docker-enter centos_ansible
+          cat $WERCKER_ROOT/ansible-pyenv/ansible-idempotent-test.sh 2>&1 | /usr/local/bin/docker-enter centos_ansible
 
     - script:
         name: build docker image ubuntu
@@ -40,10 +40,10 @@ build:
     - script:
         name: run system test
         code: |
-          cat $WERCKER_ROOT/ansible-pyenv/ansible-test.sh | /usr/local/bin/docker-enter ubuntu_ansible
+          cat $WERCKER_ROOT/ansible-pyenv/ansible-test.sh 2>&1 | /usr/local/bin/docker-enter ubuntu_ansible
  
     - script:
         name: run idempotent test
         code: |
-          cat $WERCKER_ROOT/ansible-pyenv/ansible-idempotent-test.sh | /usr/local/bin/docker-enter ubuntu_ansible
+          cat $WERCKER_ROOT/ansible-pyenv/ansible-idempotent-test.sh 2>&1 | /usr/local/bin/docker-enter ubuntu_ansible
 
