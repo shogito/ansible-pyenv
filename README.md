@@ -34,3 +34,11 @@ ANSIBLE_PYENV_PYTHON_VERSION
 MIT / BSD
 
 ### Author Information
+
+
+### TODO
+* ansible.cfgをci as serviceの.ymlで生成するようにする(リポジトリに入れない)
+* ansible-test.shとansible-idempotent-test.shを.werckerサブディレクトリに隠す
+* それかscript: >でヒアドキュメント化する
+
+
