@@ -3,11 +3,6 @@ build:
   steps:
 
     - script: 
-        name: lookup env
-        code: ls -l ; echo $WERCKER_ROOT ; pwd
-
-
-    - script: 
         name: install docker-enter
         code: docker run --rm -v /usr/local/bin:/target jpetazzo/nsenter
 
