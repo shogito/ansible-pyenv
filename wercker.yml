@@ -1,6 +1,12 @@
 box: wercker-labs/docker
 build:
   steps:
+
+    - script: 
+        name: lookup env
+        code: ls -l ; echo $WERCKER_ROOT ; pwd
+
+
     - script: 
         name: install docker-enter
         code: docker run --rm -v /usr/local/bin:/target jpetazzo/nsenter
@@ -11,7 +17,7 @@ build:
 
     - script:
         name: run docker container
-        code: cd $WERCKER_ROOT; docker run -v `pwd`:/ansible-pyenv -i -d -name=centos_ansible shogito/centos_ansible /bin/bash
+        code: cd $WERCKER_ROOT; docker run -v `pwd`:/ansible-pyenv -i -d --name=centos_ansible shogito/centos_ansible /bin/bash
 
     - script:
         name: run system test
@@ -29,7 +35,7 @@ build:
 
     - script:
         name: run docker container
-        code: cd $WERCKER_ROOT; docker run -v `pwd`:/ansible-pyenv -i -d -name=ubuntu_ansible shogito/ubuntu_ansible /bin/bash
+        code: cd $WERCKER_ROOT; docker run -v `pwd`:/ansible-pyenv -i -d --name=ubuntu_ansible shogito/ubuntu_ansible /bin/bash
 
     - script:
         name: run system test
