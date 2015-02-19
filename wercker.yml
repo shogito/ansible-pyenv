@@ -47,7 +47,7 @@ build:
   steps:
     - script:
         name: 2box and here doc test
-        code: >
+        code: |-
             cat <<'EOF'
             test
             dayo
