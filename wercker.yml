@@ -46,9 +46,5 @@ box: wercker-labs/docker
 build:
   steps:
     - script:
-        name: 2box and here doc test
-        code: |-
-            cat <<'EOF'
-            test
-            dayo
-            EOF
+        name: 2box test
+        code: hostname
