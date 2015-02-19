@@ -6,13 +6,13 @@ build:
         name: install docker-enter
         code: docker run --rm -v /usr/local/bin:/target jpetazzo/nsenter
 
-    - script:
-        name: build docker image centos
-        code: cd $WERCKER_ROOT/.wercker/centos; docker build -t shogito/centos_ansible .
+#    - script:
+#        name: build docker image centos
+#        code: cd $WERCKER_ROOT/.wercker/centos; docker build -t shogito/centos_ansible .
 
     - script:
         name: run docker container
-        code: cd $WERCKER_ROOT; docker run -v `pwd`:/ansible-pyenv -i -d --name=centos_ansible shogito/centos_ansible /bin/bash
+        code: docker run -v `pwd`:/ansible-pyenv -i -d --name=centos_ansible ansible/centos7-ansible /bin/bash
 
     - script:
         name: run system test
@@ -24,13 +24,13 @@ build:
         code: |
           echo /ansible-pyenv/ansible-idempotent-test.sh | /usr/local/bin/docker-enter centos_ansible
 
-    - script:
-        name: build docker image ubuntu
-        code: cd $WERCKER_ROOT/.wercker/ubuntu; docker build -t shogito/ubuntu_ansible .
+#    - script:
+#        name: build docker image ubuntu
+#        code: cd $WERCKER_ROOT/.wercker/ubuntu; docker build -t shogito/ubuntu_ansible .
 
     - script:
         name: run docker container
-        code: cd $WERCKER_ROOT; docker run -v `pwd`:/ansible-pyenv -i -d --name=ubuntu_ansible shogito/ubuntu_ansible /bin/bash
+        code: docker run -v `pwd`:/ansible-pyenv -i -d --name=ubuntu_ansible ansible/ubuntu14.04-ansible /bin/bash
 
     - script:
         name: run system test
