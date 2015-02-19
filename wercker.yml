@@ -4,7 +4,7 @@ build:
   steps:
     - script: 
         name: install docker-enter
-        code: docker run --rm -v $WERCKER_CACHE/bin:/target jpetazzo/nsenter
+        code: docker run --rm -v $WERCKER_CACHE_DIR/bin:/target jpetazzo/nsenter
 
     - script:
         name: test docker-enter
