@@ -43,8 +43,8 @@ build:
           echo /ansible-pyenv/ansible-idempotent-test.sh | /usr/local/bin/docker-enter ubuntu_ansible
 
   after-steps:
-    - sherzberg/slack-notify:
-        subdomain: nextone
-        token: $SLACK_API_TOKEN
-        channel: #wercker     
+    - wantedly/pretty-slack-notify:
+        webhook_url: $SLACK_API_TOKEN
+        channel: wercker     
+        username: werko
 
