@@ -1,13 +1,7 @@
 box: wercker-labs/docker
 build:
 
-
-  after-steps:
-    - wantedly/pretty-slack-notify:
-        webhook_url: $SLACK_WEBHOOK_URL
-
   steps:
-
     - script: 
         name: install docker-enter
         code: docker run --rm -v /usr/local/bin:/target jpetazzo/nsenter
@@ -48,4 +42,9 @@ build:
         code: |
           echo /ansible-pyenv/ansible-idempotent-test.sh | /usr/local/bin/docker-enter ubuntu_ansible
 
-
+  after-steps:
+    - wantedly/pretty-slack-notify:
+        webhook_url: $SLACK_WEBHOOK_URL
+        channel: wercker
+        username: werko
+        
