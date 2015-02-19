@@ -40,5 +40,5 @@ MIT / BSD
 * ansible.cfgをci as serviceの.ymlで生成するようにする(リポジトリに入れない)
 * ansible-test.shとansible-idempotent-test.shを.werckerサブディレクトリに隠す
 * それかscript: >でヒアドキュメント化する
-
+* ansibleの公式Dockerリポジトリを使用してるのでcentos6/ubuntu12.04のイメージも作っとく
 
