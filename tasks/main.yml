@@ -41,13 +41,13 @@
 - name: python install
   shell: "echo y | '{{ ANSIBLE_PYENV_PYENV_USER_HOME }}'/.pyenv/bin/pyenv install {{ ANSIBLE_PYENV_PYTHON_VERSION }}"
   sudo_user: "{{ ANSIBLE_PYENV_PYENV_USER }}"
-  changed_when: false 
+#  changed_when: false 
   always_run: yes
   
 - name: python global 
   shell: "'{{ ANSIBLE_PYENV_PYENV_USER_HOME }}'/.pyenv/bin/pyenv global {{ ANSIBLE_PYENV_PYTHON_VERSION }}"
   sudo_user: "{{ ANSIBLE_PYENV_PYENV_USER }}"
-  changed_when: false 
+#  changed_when: false 
   always_run: yes
 
 - name: clone pyenv-virtualenv
