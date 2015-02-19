@@ -9,7 +9,7 @@ build:
     - script:
         name: test docker-enter
         code: |
-          which $WERCKER_CACHE/bin/docker-enter
+          which $WERCKER_CACHE_DIR/bin/docker-enter
    
 
 
