@@ -49,6 +49,6 @@ build:
         name: 2box and here doc test
         code: >
             cat <<'EOF'
-                test
-                dayo
+            test
+            dayo
             EOF
