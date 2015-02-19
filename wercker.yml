@@ -42,9 +42,3 @@ build:
         code: |
           echo /ansible-pyenv/ansible-idempotent-test.sh | /usr/local/bin/docker-enter ubuntu_ansible
 
-box: wercker-labs/docker
-build:
-  steps:
-    - script:
-        name: 2box test
-        code: hostname
