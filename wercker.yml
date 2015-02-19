@@ -44,7 +44,7 @@ build:
 
   after-steps:
     - sherzberg/slack-notify:
-        subdomain: wercker
+        subdomain: nextone
         token: $SLACK_API_TOKEN
         channel: #wercker     
 
