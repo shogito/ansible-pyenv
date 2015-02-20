@@ -1,0 +1,18 @@
+box: wercker-labs/docker
+build:
+  steps:
+    - script:
+        name: cache image
+        code: |
+            if [[ -e ${WERCKER_CACHE_DIR}/docker_ansible_image.tar ]]; then cat ${WERCKER_CACHE_DIR}/docker_ansible_image.tar | docker import - -t shogito/ubuntu ; docker load --input ${WERCKER_CACHE_DIR}/docker_ansible_image.tar ; else docker build . ; docker save -o ${WERCKER_CACHE_DIR}/docker_ansible_image.tar shogito/ubuntu ; fi
+
+    - script:
+        name: restore
+        code: docker load -i ${WERCKER_CACHE_DIR}/docker_ansible_image.tar -t shogito/ubuntu
+
+    - script:
+        name: run system test
+        code: |
+            sudo docker run -v `pwd`:/ansible-pyenv --workdir=/ansible-pyenv shogito/ubuntu ansible-playbook /ansible-pyenv/tests/test.yml -i /ansible-pyenv/tests/inventory -c local --sudo
+
+   

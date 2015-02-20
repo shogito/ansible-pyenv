@@ -1,6 +1,7 @@
-[![Build Status](https://travis-ci.org/shogito/ansible-pyenv.svg?branch=master)](https://travis-ci.org/shogito/ansible-pyenv)
 # Ansible Role: ansible-pyenv
 
+[![Build Status](https://travis-ci.org/shogito/ansible-pyenv.svg?branch=master)](https://travis-ci.org/shogito/ansible-pyenv)
+[![wercker status](https://app.wercker.com/status/4e08a3a5894734f295ad5a1c242951dc/m "wercker status")](https://app.wercker.com/project/bykey/4e08a3a5894734f295ad5a1c242951dc)
 ### 要求
 none
 
@@ -33,3 +34,11 @@ ANSIBLE_PYENV_PYTHON_VERSION
 MIT / BSD
 
 ### Author Information
+
+
+### TODO
+* ansible.cfgをci as serviceの.ymlで生成するようにする(リポジトリに入れない)
+* ansible-test.shとansible-idempotent-test.shを.werckerサブディレクトリに隠す
+* それかscript: >でヒアドキュメント化する
+* ansibleの公式Dockerリポジトリを使用してるのでcentos6/ubuntu12.04のイメージも作っとく
+
