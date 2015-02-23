@@ -52,5 +52,5 @@
   sudo_user: "{{ ANSIBLE_PYENV_PYENV_USER }}"
 
 - name: python version check
-  shell: "$SHELL -c 'python -V 2>&1' 
+  shell: "$SHELL -c 'python -V 2>&1'" 
   changed_when: false
