@@ -36,10 +36,3 @@ MIT / BSD
 ### Author Information
 
 
-### TODO
-* ansibleの公式Dockerリポジトリを使用してるのでcentos6/ubuntu12.04のイメージも作っとく
-* build時間短縮のためにboxを外出しにするのはwerckerの仕様上難しそう。wercker-labs/dockerがboxとしてinherit出来るようになればおそらく可
-* stepsを外出しにする
-* box化が難しそうなのでdocker imageのキャッシュを考える
-* local実行の場合しか検証できないためsshでも検証できるようにする
-
