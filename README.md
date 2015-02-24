@@ -37,9 +37,6 @@ MIT / BSD
 
 
 ### TODO
-* ansible.cfgをci as serviceの.ymlで生成するようにする(リポジトリに入れない)
-* ansible-test.shとansible-idempotent-test.shを.werckerサブディレクトリに隠す
-* それかscript: >でヒアドキュメント化する
 * ansibleの公式Dockerリポジトリを使用してるのでcentos6/ubuntu12.04のイメージも作っとく
 * build時間短縮のためにboxを外出しにするのはwerckerの仕様上難しそう。wercker-labs/dockerがboxとしてinherit出来るようになればおそらく可
 * stepsを外出しにする
