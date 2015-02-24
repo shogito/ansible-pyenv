@@ -1,55 +1,84 @@
 - include: prereq-RedHat.yml
   when: ansible_os_family == 'RedHat'
-  tag: pyenv
+  tags:
+      - pyenv
+      - redhat
 
 - include: prereq-Debian.yml
   when: ansible_os_family == 'Debian'
+  tags:
+      - pyenv
+      - debian
 
 - name: clone pyenv
   git: repo=git://github.com/yyuu/pyenv.git dest={{ ANSIBLE_PYENV_PYENV_USER_HOME }}/.pyenv accept_hostkey=yes
   sudo_user: "{{ ANSIBLE_PYENV_PYENV_USER }}"
+  tags:
+      - pyenv
 
 - name: create environ dir
   file: path={{ ANSIBLE_PYENV_PYENV_USER_HOME }}/profile.d state=directory mode=0755
   sudo_user: "{{ ANSIBLE_PYENV_PYENV_USER }}"
+  tags:
+      - pyenv
 
 - name: add environ scrip
   copy: src=../files/pyenv.sh dest={{ ANSIBLE_PYENV_PYENV_USER_HOME }}/profile.d/ mode=0755
   sudo_user: "{{ ANSIBLE_PYENV_PYENV_USER }}"
+  tags:
+      - pyenv
 
-- name: .zshenv存在チェック
-  stat: path={{ ANSIBLE_PYENV_PYENV_USER_HOME }}/.zshenv
-  register: is_file
-  sudo_user: "{{ ANSIBLE_PYENV_PYENV_USER }}"
+- name: check bash
+  shell: "[ -x $(which bash) ] && echo 'Found' || echo ''"
+  register: executable_bash
   changed_when: false 
-  always_run: yes
+  tags:
+      - pyenv
 
-- name: .zshenv作成
-  file: path={{ ANSIBLE_PYENV_PYENV_USER_HOME }}/.zshenv state=touch owner={{ ANSIBLE_PYENV_PYENV_USER }}  mode=0755
-  sudo_user: "{{ ANSIBLE_PYENV_PYENV_USER }}"
-  when: is_file.stat.md5 is not defined
+- name: add bash environ
+  include: bash-env.yml
+  when: executable_bash.stdout
+  tags:
+      - pyenv
 
-- name: .zshenv_permission設定
-  file: path={{ ANSIBLE_PYENV_PYENV_USER_HOME }}/.zshenv state=file owner={{ ANSIBLE_PYENV_PYENV_USER }}  mode=0755
-  sudo_user: "{{ ANSIBLE_PYENV_PYENV_USER }}"
-  when: is_file.stat.md5 is defined
+- name: check zsh
+  shell: "[ -x $(which zsh) ] && echo 'Found' || echo ''"
+  register: executable_zsh
+  changed_when: false 
+  tags:
+      - pyenv
 
-- name: .zshenvでprofile.d/pyenv.shを読み込むように変更
-  lineinfile: line='source {{ ANSIBLE_PYENV_PYENV_USER_HOME }}/profile.d/pyenv.sh' dest={{ ANSIBLE_PYENV_PYENV_USER_HOME }}/.zshenv insertafter=EOF
-  sudo_user: "{{ ANSIBLE_PYENV_PYENV_USER }}"
+- name: add zsh environ
+  include: zsh-env.yml
+  when: executable_zsh.stdout
+  tags:
+      - pyenv
 
 - name: python install
   shell: "echo y | '{{ ANSIBLE_PYENV_PYENV_USER_HOME }}'/.pyenv/bin/pyenv install {{ ANSIBLE_PYENV_PYTHON_VERSION }}"
   sudo_user: "{{ ANSIBLE_PYENV_PYENV_USER }}"
   changed_when: false 
   always_run: yes
+  tags:
+      - pyenv
+      - python install
   
 - name: python global 
   shell: "'{{ ANSIBLE_PYENV_PYENV_USER_HOME }}'/.pyenv/bin/pyenv global {{ ANSIBLE_PYENV_PYTHON_VERSION }}"
   sudo_user: "{{ ANSIBLE_PYENV_PYENV_USER }}"
   changed_when: false 
   always_run: yes
+  tags:
+      - pyenv
+      - python global
 
 - name: clone pyenv-virtualenv
   git: repo=git://github.com/yyuu/pyenv-virtualenv.git dest={{ ANSIBLE_PYENV_PYENV_USER_HOME }}/.pyenv/plugins/pyenv-virtualenva accept_hostkey=yes
   sudo_user: "{{ ANSIBLE_PYENV_PYENV_USER }}"
+
+- name: python version check
+  shell: "su - root -c 'python -V 2>&1 | grep -F \"{{ ANSIBLE_PYENV_PYTHON_VERSION }}\"'" 
+  changed_when: false
+  tags:
+      - pyenv
+      - python check 

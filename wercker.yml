@@ -13,12 +13,12 @@ build:
     - script:
         name: run system test
         code: |
-          echo /ansible-pyenv/ansible-test.sh | /usr/local/bin/docker-enter centos_ansible
+          echo /ansible-pyenv/tests/ansible-test.sh | /usr/local/bin/docker-enter centos_ansible
    
     - script:
         name: run idempotent test 
         code: |
-          echo /ansible-pyenv/ansible-idempotent-test.sh | /usr/local/bin/docker-enter centos_ansible
+          echo /ansible-pyenv/tests/ansible-idempotent-test.sh | /usr/local/bin/docker-enter centos_ansible
 
     - script:
         name: run docker container
@@ -27,12 +27,12 @@ build:
     - script:
         name: run system test
         code: |
-          echo /ansible-pyenv/ansible-test.sh | /usr/local/bin/docker-enter ubuntu_ansible
+          echo /ansible-pyenv/tests/ansible-test.sh | /usr/local/bin/docker-enter ubuntu_ansible
  
     - script:
         name: run idempotent test
         code: |
-          echo /ansible-pyenv/ansible-idempotent-test.sh | /usr/local/bin/docker-enter ubuntu_ansible
+          echo /ansible-pyenv/tests/ansible-idempotent-test.sh | /usr/local/bin/docker-enter ubuntu_ansible
 
   after-steps:
     - wantedly/pretty-slack-notify:

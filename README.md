@@ -27,7 +27,7 @@ ANSIBLE_PYENV_PYTHON_VERSION
     ANSIBLE_PYENV_PYENV_USER_HOME: /root 
     ANSIBLE_PYENV_PYTHON_VERSION: 2.7.9
   roles:
-    - { role: shogito.ansible-pyenv }
+    - { role: shogito.pyenv }
 ```
 
 ### License
@@ -35,14 +35,4 @@ MIT / BSD
 
 ### Author Information
 
-
-### TODO
-* ansible.cfgをci as serviceの.ymlで生成するようにする(リポジトリに入れない)
-* ansible-test.shとansible-idempotent-test.shを.werckerサブディレクトリに隠す
-* それかscript: >でヒアドキュメント化する
-* ansibleの公式Dockerリポジトリを使用してるのでcentos6/ubuntu12.04のイメージも作っとく
-* build時間短縮のためにboxを外出しにするのはwerckerの仕様上難しそう。wercker-labs/dockerがboxとしてinherit出来るようになればおそらく可
-* stepsを外出しにする
-* box化が難しそうなのでdocker imageのキャッシュを考える
-* local実行の場合しか検証できないためsshでも検証できるようにする
 
