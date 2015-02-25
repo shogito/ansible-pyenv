@@ -2,6 +2,14 @@ box: wercker-labs/docker
 build:
 
   steps:
+    - script:
+        name: install ansible to local
+        code: sudo apt-get update ; sudo apt-get install python-pip -y ; sudo pip install ansible
+
+    - script:
+        name: syntax check
+        code: ansible-playbook -i /ansible-pyenv/tests/inventory /ansible-pyenv/tests/test.yml --syntax-check
+
     - script: 
         name: install docker-enter
         code: docker run --rm -v /usr/local/bin:/target jpetazzo/nsenter
