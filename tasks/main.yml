@@ -58,7 +58,6 @@
   shell: "echo y | '{{ ANSIBLE_PYENV_PYENV_USER_HOME }}'/.pyenv/bin/pyenv install {{ ANSIBLE_PYENV_PYTHON_VERSION }}"
   sudo_user: "{{ ANSIBLE_PYENV_PYENV_USER }}"
   changed_when: false 
-  always_run: yes
   tags:
       - pyenv
       - python install
@@ -67,7 +66,6 @@
   shell: "'{{ ANSIBLE_PYENV_PYENV_USER_HOME }}'/.pyenv/bin/pyenv global {{ ANSIBLE_PYENV_PYTHON_VERSION }}"
   sudo_user: "{{ ANSIBLE_PYENV_PYENV_USER }}"
   changed_when: false 
-  always_run: yes
   tags:
       - pyenv
       - python global
