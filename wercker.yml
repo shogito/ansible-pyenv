@@ -8,7 +8,7 @@ build:
 
     - script:
         name: syntax check
-        code: ansible-playbook -i tests/inventory /ansible-pyenv/tests/test.yml --syntax-check
+        code: ansible-playbook -i tests/inventory tests/test.yml --syntax-check
 
     - script: 
         name: install docker-enter
