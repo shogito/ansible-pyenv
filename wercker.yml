@@ -6,10 +6,6 @@ build:
         name: install ansible to local
         code: sudo apt-get update ; sudo apt-get install python-pip -y ; sudo pip install ansible
 
-    - script:
-        name: syntax check
-        code: ls -l $WERCKER_ROOT ; echo "[defaults]"> ansible.cfg; echo "roles_path = $WERCKER_ROOT">> ansible.cfg ; cat ansible.cfg ; ansible-playbook -i tests/inventory tests/test.yml --syntax-check
-
     - script: 
         name: install docker-enter
         code: docker run --rm -v /usr/local/bin:/target jpetazzo/nsenter
@@ -17,6 +13,11 @@ build:
     - script:
         name: run docker container
         code: docker run -v `pwd`:/ansible-pyenv -i -d --name=centos_ansible ansible/centos7-ansible /bin/bash
+
+    - script:
+        name: run syntax check
+        code: |
+          echo /ansible-pyenv/tests/ansible-test.sh | /usr/local/bin/docker-enter centos_ansible
 
     - script:
         name: run system test
