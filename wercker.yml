@@ -17,7 +17,7 @@ build:
     - script:
         name: run syntax check
         code: |
-          echo /ansible-pyenv/tests/ansible-test.sh | /usr/local/bin/docker-enter centos_ansible
+          echo /ansible-pyenv/tests/syntax-check.sh | /usr/local/bin/docker-enter centos_ansible
 
     - script:
         name: run system test
