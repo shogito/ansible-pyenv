@@ -1,4 +1,4 @@
-- hosts: localhost
+- hosts: all
   vars:
     ANSIBLE_PYENV_PYENV_USER: root
     ANSIBLE_PYENV_PYENV_USER_HOME: /root

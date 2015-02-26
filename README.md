@@ -21,7 +21,7 @@ ANSIBLE_PYENV_PYTHON_VERSION
 
 ### Example Playbook
 ```
-- hosts: server
+- hosts: all
   vars:
     ANSIBLE_PYENV_PYENV_USER: root
     ANSIBLE_PYENV_PYENV_USER_HOME: /root 
