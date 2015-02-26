@@ -8,7 +8,7 @@ build:
 
     - script:
         name: syntax check
-        code: echo "[defaults]"> ansible.cfg; echo "roles_path = $WERCKER_ROOT">> ansible.cfg ; cat ansible.cfg ; ansible-playbook -i tests/inventory tests/test.yml --syntax-check
+        code: ls -l $WERCKER_ROOT ; echo "[defaults]"> ansible.cfg; echo "roles_path = $WERCKER_ROOT">> ansible.cfg ; cat ansible.cfg ; ansible-playbook -i tests/inventory tests/test.yml --syntax-check
 
     - script: 
         name: install docker-enter
