@@ -1,7 +1,7 @@
 # Ansible Role: ansible-pyenv
 
 [![Build Status](https://travis-ci.org/shogito/ansible-pyenv.svg?branch=master)](https://travis-ci.org/shogito/ansible-pyenv)
-[![wercker status](https://app.wercker.com/status/4e08a3a5894734f295ad5a1c242951dc/m "wercker status")](https://app.wercker.com/project/bykey/4e08a3a5894734f295ad5a1c242951dc)
+[![wercker status](https://app.wercker.com/status/4e08a3a5894734f295ad5a1c242951dc/s "wercker status")](https://app.wercker.com/project/bykey/4e08a3a5894734f295ad5a1c242951dc)
 ### 要求
 none
 
