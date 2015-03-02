@@ -75,7 +75,7 @@
   sudo_user: "{{ ANSIBLE_PYENV_PYENV_USER }}"
 
 - name: python version check
-  shell: "su - root -c 'python -V 2>&1 | grep -F \"{{ ANSIBLE_PYENV_PYTHON_VERSION }}\"'" 
+  shell: "su - root -c '{{ ANSIBLE_PYENV_PYENV_USER_HOME }}/.pyenv/shims/python -V'" 
   changed_when: false
   tags:
       - pyenv
