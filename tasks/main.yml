@@ -22,8 +22,8 @@
   tags:
       - pyenv
 
-- name: add environ scrip
-  copy: src=../files/pyenv.sh dest={{ ANSIBLE_PYENV_PYENV_USER_HOME }}/profile.d/ mode=0755
+- name: add environ script
+  copy: src=../files/pyenv.sh dest={{ ANSIBLE_PYENV_PYENV_USER_HOME }}/profile.d/ mode=0644
   sudo_user: "{{ ANSIBLE_PYENV_PYENV_USER }}"
   tags:
       - pyenv
