@@ -1,5 +1,5 @@
 - name: .bashrc存在チェック
-  stat: path={{ ANSIBLE_PYENV_PYENV_USER_HOME }}/.bashrc
+  stat: path={{ ANSIBLE_PYENV_PYENV_USER_HOME }}/.bashrc follow=true
   register: is_file
   sudo_user: "{{ ANSIBLE_PYENV_PYENV_USER }}"
   changed_when: false 

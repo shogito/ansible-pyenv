@@ -1,5 +1,5 @@
 - name: .zshenv存在チェック
-  stat: path={{ ANSIBLE_PYENV_PYENV_USER_HOME }}/.zshenv
+  stat: path={{ ANSIBLE_PYENV_PYENV_USER_HOME }}/.zshenv follow=true
   register: is_file
   sudo_user: "{{ ANSIBLE_PYENV_PYENV_USER }}"
   changed_when: false 
