@@ -10,11 +10,6 @@
   sudo_user: "{{ ANSIBLE_PYENV_PYENV_USER }}"
   when: is_file.stat.md5 is not defined
 
-- name: .zshenv_permission設定
-  file: path={{ ANSIBLE_PYENV_PYENV_USER_HOME }}/.zshenv state=file owner={{ ANSIBLE_PYENV_PYENV_USER }}  mode=0755
-  sudo_user: "{{ ANSIBLE_PYENV_PYENV_USER }}"
-  when: is_file.stat.md5 is defined
-
 - name: .zshenvでprofile.d/pyenv.shを読み込むように変更
   lineinfile: line='source {{ ANSIBLE_PYENV_PYENV_USER_HOME }}/profile.d/pyenv.sh' dest={{ ANSIBLE_PYENV_PYENV_USER_HOME }}/.zshenv insertafter=EOF
   sudo_user: "{{ ANSIBLE_PYENV_PYENV_USER }}"
