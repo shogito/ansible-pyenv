@@ -24,8 +24,8 @@ ANSIBLE_PYENV_PYTHON_VERSION
 - hosts: all
   vars:
     ANSIBLE_PYENV_PYENV_USER: root
-    ANSIBLE_PYENV_PYENV_USER_HOME: /root 
-    ANSIBLE_PYENV_PYTHON_VERSION: 2.7.9
+    ANSIBLE_PYENV_PYENV_USER_HOME: /root
+    ANSIBLE_PYENV_PYTHON_VERSION: 3.4.3
   roles:
     - { role: shogito.pyenv, sudo: true }
 ```
