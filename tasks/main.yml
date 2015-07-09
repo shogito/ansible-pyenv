@@ -11,7 +11,7 @@
       - debian
 
 - name: clone pyenv
-  git: repo=git://github.com/yyuu/pyenv.git dest={{ ANSIBLE_PYENV_PYENV_USER_HOME }}/.pyenv accept_hostkey=yes
+  git: repo=git://github.com/yyuu/pyenv.git dest={{ ANSIBLE_PYENV_PYENV_USER_HOME }}/.pyenv accept_hostkey=yes depth=1
   sudo_user: "{{ ANSIBLE_PYENV_PYENV_USER }}"
   tags:
       - pyenv
@@ -71,7 +71,7 @@
       - python global
 
 - name: clone pyenv-virtualenv
-  git: repo=git://github.com/yyuu/pyenv-virtualenv.git dest={{ ANSIBLE_PYENV_PYENV_USER_HOME }}/.pyenv/plugins/pyenv-virtualenv accept_hostkey=yes
+  git: repo=git://github.com/yyuu/pyenv-virtualenv.git dest={{ ANSIBLE_PYENV_PYENV_USER_HOME }}/.pyenv/plugins/pyenv-virtualenv accept_hostkey=yes depth=1
   sudo_user: "{{ ANSIBLE_PYENV_PYENV_USER }}"
 
 - name: python version check
