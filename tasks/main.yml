@@ -54,9 +54,13 @@
   tags:
       - pyenv
 
+- stat: path={{ ANSIBLE_PYENV_PYENV_USER_HOME }}/.pyenv/versions/{{ ANSIBLE_PYENV_PYTHON_VERSION }}
+  register: pyenv_version_dir
+
 - name: python install
   shell: "echo y | '{{ ANSIBLE_PYENV_PYENV_USER_HOME }}'/.pyenv/bin/pyenv install {{ ANSIBLE_PYENV_PYTHON_VERSION }}"
   sudo_user: "{{ ANSIBLE_PYENV_PYENV_USER }}"
+  when: pyenv_version_dir.stat.exists == False
   changed_when: false 
   tags:
       - pyenv
