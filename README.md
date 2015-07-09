@@ -27,7 +27,7 @@ ANSIBLE_PYENV_PYTHON_VERSION
     ANSIBLE_PYENV_PYENV_USER_HOME: /root 
     ANSIBLE_PYENV_PYTHON_VERSION: 2.7.9
   roles:
-    - { role: shogito.pyenv }
+    - { role: shogito.pyenv, sudo: true }
 ```
 
 ### License
