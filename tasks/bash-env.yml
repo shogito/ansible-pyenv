@@ -1,19 +1,14 @@
 - name: .bashrc存在チェック
-  stat: path={{ ANSIBLE_PYENV_PYENV_USER_HOME }}/.bashrc
+  stat: path={{ ANSIBLE_PYENV_PYENV_USER_HOME }}/.bashrc follow=true
   register: is_file
   sudo_user: "{{ ANSIBLE_PYENV_PYENV_USER }}"
   changed_when: false 
   always_run: yes
 
 - name: .bashrc作成
-  file: path={{ ANSIBLE_PYENV_PYENV_USER_HOME }}/.bashrc state=touch owner={{ ANSIBLE_PYENV_PYENV_USER }}  mode=0755
+  file: path={{ ANSIBLE_PYENV_PYENV_USER_HOME }}/.bashrc state=touch owner={{ ANSIBLE_PYENV_PYENV_USER }}  mode=0644
   sudo_user: "{{ ANSIBLE_PYENV_PYENV_USER }}"
   when: is_file.stat.md5 is not defined
-
-- name: .bashrc_permission設定
-  file: path={{ ANSIBLE_PYENV_PYENV_USER_HOME }}/.bashrc state=file owner={{ ANSIBLE_PYENV_PYENV_USER }}  mode=0755
-  sudo_user: "{{ ANSIBLE_PYENV_PYENV_USER }}"
-  when: is_file.stat.md5 is defined
 
 - name: .bashrcでprofile.d/pyenv.shを読み込むように変更
   lineinfile: line='source {{ ANSIBLE_PYENV_PYENV_USER_HOME }}/profile.d/pyenv.sh' dest={{ ANSIBLE_PYENV_PYENV_USER_HOME }}/.bashrc insertafter=EOF
